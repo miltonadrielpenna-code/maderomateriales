@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madero Materiales — Tu corralón de confianza</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@latest/dist/core.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@latest/dist/mono.css">
+
+  <style>
+    :root {
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'Geist Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --clr-brand: #CC0000;
+      --clr-brand-hover: #AA0000;
+      --clr-bg-dark: #0A0A0A;
+      --clr-border-dark: #1E1E1E;
+      --clr-text-muted: #666666;
+      --clr-text-muted-dark: #BBBBBB;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: #ffffff; color: #111111; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem; height: 76px; border-bottom: 2px solid #111111;
+      background: rgba(255, 255, 255, 0.95); position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    
+    .nav-logo a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .nav-logo img {
+      display: block;
+      height: 48px;
+      width: auto;
+      transition: transform 0.2s ease;
+    }
+    .nav-logo a:hover img {
+      transform: scale(1.03);
+    }
+
+    .nav-links { display: flex; gap: 3rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: #777777; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.15s ease; }
+    .nav-links a:hover { color: var(--clr-brand); }
+    .nav-cta {
+      background: var(--clr-brand); color: #ffffff; font-size: 13px; font-weight: 600;
+      padding: 10px 24px; border-radius: 2px; letter-spacing: 0.03em;
+      text-transform: uppercase; transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .nav-cta:hover { background: var(--clr-brand-hover); }
+    .nav-cta:active { transform: scale(0.98); }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 6rem 4rem 4rem;
+      border-bottom: 2px solid #111111;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%);
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--clr-brand); margin-bottom: 3rem;
+    }
+    .hero-tag::before { content: ''; display: block; width: 40px; height: 2px; background: var(--clr-brand); }
+    .hero h1 {
+      font-size: 80px; font-weight: 500; line-height: 1.05; letter-spacing: -0.03em;
+      max-width: 950px; color: #111111;
+    }
+    .hero h1 .brand-italic { font-style: italic; font-weight: 400; color: var(--clr-brand); }
+    .hero-bottom {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 4rem; margin-top: 4rem;
+    }
+    .hero-desc {
+      font-size: 19px; line-height: 1.75; color: #444444; max-width: 560px;
+    }
+    .hero-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
+    .btn-primary {
+      background: var(--clr-brand); color: #ffffff; padding: 16px 36px; border-radius: 2px;
+      font-size: 15px; font-weight: 600; display: inline-flex; align-items: center;
+      gap: 10px; transition: background 0.15s ease, transform 0.1s ease; white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(204, 0, 0, 0.1);
+    }
+    .btn-primary:hover { background: var(--clr-brand-hover); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-ghost {
+      color: #111111; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center;
+      gap: 8px; border-bottom: 2px solid #111111; padding-bottom: 4px;
+      text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-ghost:hover { color: var(--clr-brand); border-color: var(--clr-brand); }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-bottom: 2px solid #111111; background: #ffffff;
+    }
+    .stat-cell { padding: 3rem 4rem; border-right: 2px solid #111111; }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: var(--font-mono); font-size: 54px; font-weight: 600; color: var(--clr-brand); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--clr-text-muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+
+    /* SECCIONES GRALES */
+    .section { padding: 8rem 4rem; border-bottom: 2px solid #111111; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--clr-brand); margin-bottom: 2rem;
+    }
+    .section-eyebrow::before { content: ''; display: block; width: 40px; height: 2px; background: var(--clr-brand); }
+    .section-heading { font-size: 56px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 5rem; }
+
+    /* SERVICIOS */
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #111111; border: 2px solid #111111; }
+    .service-card { padding: 4rem 3.5rem; background: #ffffff; transition: background 0.2s ease; }
+    .service-card:hover { background: #fbfbfb; }
+    .service-card i { font-size: 38px; color: var(--clr-brand); display: block; margin-bottom: 2rem; }
+    .service-card h3 { font-size: 22px; font-weight: 500; margin-bottom: 1rem; letter-spacing: -0.01em; }
+    .service-card p { font-size: 16px; color: #555555; line-height: 1.7; max-width: 440px; }
+
+    /* PRODUCTOS */
+    .products-section { background: var(--clr-bg-dark); }
+    .products-section .section-heading { color: #ffffff; }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px; background: var(--clr-border-dark); border: 2px solid var(--clr-border-dark);
+    }
+    .product-cell {
+      padding: 2rem 1.75rem; background: var(--clr-bg-dark);
+      display: flex; align-items: center; gap: 16px;
+      font-size: 16px; color: var(--clr-text-muted-dark); font-weight: 400;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .product-cell:hover { background: #121212; color: #ffffff; }
+    .product-cell i { color: var(--clr-brand); font-size: 14px; flex-shrink: 0; }
+
+    /* HORARIOS */
+    .hours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #111111; border: 2px solid #111111; }
+    .hour-cell { padding: 4rem 3.5rem; background: #ffffff; }
+    .hour-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #888888; margin-bottom: 1.5rem; }
+    .hour-time { font-family: var(--font-mono); font-size: 26px; font-weight: 500; line-height: 1.4; color: #111111; }
+    .hour-time.closed { color: #bbbbbb; font-weight: 400; font-style: italic; }
+
+    /* CONTACTO */
+    .contact-section { background: var(--clr-bg-dark); }
+    .contact-section .section-heading { color: #ffffff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; }
+    .contact-intro { font-size: 18px; color: #888888; line-height: 1.8; margin-bottom: 4rem; max-width: 480px; }
+    .contact-row {
+      display: flex; align-items: center; gap: 20px;
+      padding: 1.25rem 0; border-bottom: 1px solid var(--clr-border-dark);
+      font-size: 16px; color: var(--clr-text-muted-dark);
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row i { color: var(--clr-brand); font-size: 22px; min-width: 24px; }
+    .contact-row a { color: var(--clr-text-muted-dark); transition: color 0.15s ease, padding-left 0.15s ease; }
+    .contact-row a:hover { color: #ffffff; padding-left: 4px; }
+    .map-panel {
+      background: #0e0e0e; border: 2px solid var(--clr-border-dark); border-radius: 2px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 18px; min-height: 380px; color: #666666; font-size: 15px; text-align: center; padding: 2rem;
+    }
+    .map-panel i { font-size: 52px; color: var(--clr-brand); }
+    .map-panel span { color: var(--clr-text-muted-dark); line-height: 1.6; }
+    .map-panel a {
+      color: var(--clr-brand); font-size: 14px; font-weight: 600; display: inline-flex;
+      align-items: center; gap: 6px; border-bottom: 2px solid #CC0000;
+      padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .map-panel a:hover { color: #ffffff; border-color: #ffffff; }
+
+    /* WHATSAPP SECTION */
+    .wapp-section {
+      background: #128C7E; padding: 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 3rem; border-bottom: 2px solid #111111;
+    }
+    .wapp-text { font-size: 28px; font-weight: 500; color: #ffffff; letter-spacing: -0.01em; }
+    .wapp-text span { opacity: 0.85; font-weight: 400; font-size: 17px; display: block; margin-top: 6px; font-family: var(--font-sans); }
+    .wapp-btn {
+      background: #ffffff; color: #128C7E; font-size: 15px; font-weight: 600;
+      padding: 16px 32px; border-radius: 2px; display: inline-flex;
+      align-items: center; gap: 10px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em;
+      transition: background 0.15s ease, transform 0.1s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .wapp-btn:hover { background: #f5f5f5; }
+    .wapp-btn:active { transform: scale(0.98); }
+    .wapp-btn i { font-size: 22px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--clr-bg-dark); padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #000000;
+    }
+    .footer-left { font-size: 13px; color: #555555; font-weight: 500; }
+    .footer-left span { color: #ffffff; }
+    .footer-right { display: flex; gap: 2.5rem; }
+    .footer-right a { font-size: 13px; color: #555555; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.15s ease; }
+    .footer-right a:hover { color: var(--clr-brand); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 0 2rem; }
+      .hero { padding: 4rem 2rem 2rem; }
+      .hero h1 { font-size: 56px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .hero-actions { align-items: flex-start; width: 100%; }
+      .btn-primary { width: 100%; justify-content: center; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none; border-bottom: 2px solid #111111; padding: 2rem; }
+      .stat-cell:last-child { border-bottom: none; }
+      .section { padding: 5rem 2rem; }
+      .section-heading { font-size: 40px; margin-bottom: 3rem; }
+      .services-grid, .hours-grid { grid-template-columns: 1fr; }
+      .service-card, .hour-cell { padding: 2.5rem 2rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .wapp-section { padding: 3rem 2rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .wapp-btn { width: 100%; justify-content: center; }
+      footer { padding: 2.5rem 2rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <a href="#inicio" aria-label="Madero Materiales Inicio">
+        <img src="logo.png" alt="Madero Materiales Logo">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/5491166404076" target="_blank" class="nav-cta">Consultanos</a>
+  </nav>
+
+  <header id="inicio" class="hero">
+    <div class="hero-top">
+      <div class="hero-tag">Villa Madero · Buenos Aires</div>
+      <h1>Tu corralón<br>de confianza —<br><span class="brand-italic">materiales<br>para construir</span></h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">Local de venta de materiales para la construcción. Todo lo que necesitás para tu casa u obra, con atención personalizada, asesoramiento y servicio de entrega en la zona.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5491166404076" target="_blank" class="btn-primary">
+          <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Consultanos por WhatsApp
+        </a>
+        <a href="#productos" class="btn-ghost">Ver productos <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats-bar">
+    <div class="stat-cell">
+      <div class="stat-num">24hs</div>
+      <div class="stat-label">Anticipación para pedidos</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">+10000</div>
+      <div class="stat-label">Ventas concretadas</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">6×</div>
+      <div class="stat-label">Días de atención por semana</div>
+    </div>
+  </section>
+
+  <section id="servicios" class="section">
+    <div class="section-eyebrow">01 — Servicios</div>
+    <h2 class="section-heading">Lo que ofrecemos</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+        <h3>Entrega a domicilio</h3>
+        <p>Entrega en puerta con monto mínimo de compra. Cubrimos Villa Madero y zonas cercanas.</p>
+      </div>
+      <div class="service-card">
+        <i class="ti ti-calendar-time" aria-hidden="true"></i>
+        <h3>Pedidos programados</h3>
+        <p>Tomamos pedidos con 24 horas de anticipación para que tu obra no pare.</p>
+      </div>
+      <div class="service-card">
+        <i class="ti ti-crane" aria-hidden="true"></i>
+        <h3>Servicio de hidrogrúa</h3>
+        <p>Descarga y traslado de materiales pesados con hidrogrúa propia.</p>
+      </div>
+      <div class="service-card">
+        <i class="ti ti-building-store" aria-hidden="true"></i>
+        <h3>Venta al público</h3>
+        <p>Retirá el material en el momento. Asesoramiento para particulares, constructores y empresas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="productos" class="section products-section">
+    <div class="section-eyebrow">02 — Productos</div>
+    <h2 class="section-heading">Lo que tenemos</h2>
+    <div class="products-grid">
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Cemento</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Cal</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Cal Milagro</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Arena</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Piedra</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Cascote</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Hierros</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Ladrillos huecos</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Ladrillos comunes</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Aberturas</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Vigas</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Telgopor</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Pegamentos para cerámicas</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Membranas</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Impermeabilizantes</div>
+      <div class="product-cell"><i class="ti ti-square-filled" aria-hidden="true"></i> Productos de albañilería</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-eyebrow">03 — Horarios</div>
+    <h2 class="section-heading">Cuándo encontrarnos</h2>
+    <div class="hours-grid">
+      <div class="hour-cell">
+        <div class="hour-label">Lunes a viernes</div>
+        <div class="hour-time">8:00 – 12:30<br>14:00 – 17:00</div>
+      </div>
+      <div class="hour-cell">
+        <div class="hour-label">Sábados</div>
+        <div class="hour-time">8:00 – 12:30</div>
+      </div>
+      <div class="hour-cell">
+        <div class="hour-label">Domingos</div>
+        <div class="hour-time closed">Cerrado</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section contact-section">
+    <div class="section-eyebrow">04 — Contacto</div>
+    <h2 class="section-heading">Hablemos</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">Estamos en Villa Madero para atenderte. Consultanos por WhatsApp, mail o Instagram — respondemos rápido.</p>
+        <div class="contact-row"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Gral. de Heza 1481, Villa Madero, Buenos Aires</span></div>
+        <div class="contact-row"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i><a href="https://wa.me/5491166404076" target="_blank">+549 11 6640 4076</a></div>
+        <div class="contact-row"><i class="ti ti-phone" aria-hidden="true"></i><span>4453 8064</span></div>
+        <div class="contact-row"><i class="ti ti-mail" aria-hidden="true"></i><a href="mailto:maderomater@gmail.com">maderomater@gmail.com</a></div>
+        <div class="contact-row"><i class="ti ti-brand-instagram" aria-hidden="true"></i><a href="https://www.instagram.com/maderomateriales/" target="_blank">@maderomateriales</a></div>
+      </div>
+      <div class="map-panel">
+        <i class="ti ti-map-2" aria-hidden="true"></i>
+        <span>Gral. de Heza 1481<br>Villa Madero, Buenos Aires</span>
+        <a href="http://maps.google.com/?q=Gral.+de+Heza+1481,+Villa+Madero" target="_blank"><i class="ti ti-external-link" aria-hidden="true"></i> Cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wapp-section">
+    <div class="wapp-text">
+      ¿Necesitás materiales para tu obra?
+      <span>Escribinos y te respondemos enseguida con un presupuesto.</span>
+    </div>
+    <a href="https://wa.me/5491166404076" target="_blank" class="wapp-btn">
+      <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Escribir por WhatsApp
+    </a>
+  </section>
+
+  <footer>
+    <div class="footer-left"><span>Madero Materiales</span> · Gral. de Heza 1481, Villa Madero · 2026</div>
+    <div class="footer-right">
+      <a href="https://www.instagram.com/maderomateriales/" target="_blank">Instagram</a>
+      <a href="mailto:maderomater@gmail.com">Email</a>
+      <a href="https://wa.me/5491166404076" target="_blank">WhatsApp</a>
+    </div>
+  </footer>
+
+</body>
+</html>
